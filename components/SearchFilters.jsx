@@ -22,14 +22,11 @@ const SearchFilters = () => {
     console.log("filterValues : ", filterValues);
     const { pathname, query } = router;
 
-    const values = getFilterValues(filterValues);
-    values.forEach((item) => {
-      query[item.name] = item.value;
-    });
-
+    console.log("pathname : ", pathname);
     console.log("query : ", query);
 
-    router.push({ pathname, query });
+    query[filterValues.name] = filterValues.value;
+    router.push({ pathname: pathname, query: query });
   };
 
   return (
@@ -42,7 +39,10 @@ const SearchFilters = () => {
               w="fit-content"
               p="2"
               onChange={(e) =>
-                searchProperties({ [filter.queryName]: e.target.value })
+                searchProperties({
+                  name: filter.queryName,
+                  value: e.target.value,
+                })
               }
             >
               {filter.items?.map((item) => (
