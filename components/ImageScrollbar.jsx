@@ -16,6 +16,7 @@ const LeftArrow = () => {
         onClick={() => scrollPrev()}
         fontSize="2xl"
         cursor="pointer"
+        d={["none", "none", "none", "block"]}
       />
     </Flex>
   );
@@ -25,42 +26,45 @@ const RightArrow = () => {
   const { scrollNext } = useContext(VisibilityContext);
 
   return (
-    <Flex justifyContent="center" alignItems="center" marginRight="1">
+    <Flex justifyContent="center" alignItems="center" marginLeft="1">
       <Icon
         as={FaArrowAltCircleRight}
         onClick={() => scrollNext()}
         fontSize="2xl"
         cursor="pointer"
+        d={["none", "none", "none", "block"]}
       />
     </Flex>
   );
 };
-
-export const ImageScrollBar = ({ data }) => {
-  console.log("data : ", data);
+export default function ImageScrollbar({ photos, imgPlaceholders }) {
   return (
-    <ScrollMenu LeftArrow={LeftArrow} RightArrow={RightArrow}>
-      {data.map((item) => {
+    <ScrollMenu
+      LeftArrow={LeftArrow}
+      RightArrow={RightArrow}
+      style={{ overflow: "hidden" }}
+    >
+      {photos.map((item, index) => {
         return (
           <Box
-            key={item.id}
-            itemID={item.id}
             width="910px"
-            // overflow="hidden"
-            padding="1"
+            key={item.id}
+            itemId={item.id}
+            overflow="hidden"
+            p="1"
           >
             <Image
-              alt="property"
-              src={item.url}
+              alt=""
               placeholder="blur"
-              blurDataURL={item.url}
-              width="1000"
-              height="500"
-              sizes="(max-width:500px) 100px, (max-width:1023px) 400px, 1000px"
+              blurDataURL={`${imgPlaceholders[index]}`}
+              src={item.url}
+              width={1000}
+              height={500}
+              sizes="(max-width: 500px) 100px, (max-width: 1023px) 400px, 1000px"
             />
           </Box>
         );
       })}
     </ScrollMenu>
   );
-};
+}
