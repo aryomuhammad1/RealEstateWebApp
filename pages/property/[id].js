@@ -12,6 +12,7 @@ import { baseUrl, fetchApi } from "@/utils/fetchApi";
 import React from "react";
 import ImageScrollbar from "@/components/ImageScrollbar";
 import { getPlaiceholder } from "plaiceholder";
+import { Markup } from "interweave";
 
 const PropertyDetails = ({
   propertyDetails: {
@@ -32,6 +33,7 @@ const PropertyDetails = ({
   },
   imgPlaceholders,
 }) => {
+  console.log("[amenities] :", amenities);
   return (
     <Box maxW="1000px" margin="auto" p="4">
       {photos && imgPlaceholders && (
@@ -62,9 +64,77 @@ const PropertyDetails = ({
           {rooms} <FaBed /> | {baths} <FaBath /> | {millify(area)} sqft{" "}
           <BsGridFill />
         </Flex>
-        <Text fontSize="lg">
-          {title.length > 30 ? `${title.substring(0, 30)}...` : title}
-        </Text>
+        <Box marginTop="2">
+          <Text fontSize="lg" marginBottom="2" fontWeight="bold">
+            {title}
+          </Text>
+          <Text lineHeight="2" color="gray.600">
+            <Markup content={description} />
+          </Text>
+        </Box>
+        <Flex
+          flexWrap="wrap"
+          textTransform="uppercase"
+          justifyContent="space-between"
+        >
+          <Flex
+            justifyContent="space-between"
+            w="400px"
+            borderBottom="1px"
+            borderColor="gray.100"
+            p="3"
+          >
+            <Text>Type</Text>
+            <Text fontWeight="bold">{type}</Text>
+          </Flex>
+          <Flex
+            justifyContent="space-between"
+            w="400px"
+            borderBottom="1px"
+            borderColor="gray.100"
+            p="3"
+          >
+            <Text>Purpose</Text>
+            <Text fontWeight="bold">{purpose}</Text>
+          </Flex>
+          {furnishingStatus && (
+            <Flex
+              justifyContent="space-between"
+              w="400px"
+              borderBottom="1px"
+              borderColor="gray.100"
+              p="3"
+            >
+              <Text>Furnishing Status</Text>
+              <Text fontWeight="bold">{furnishingStatus}</Text>
+            </Flex>
+          )}
+        </Flex>
+        <Box>
+          {amenities.length && <Text>Facilities :</Text>}
+          <Flex flexWrap="wrap">
+            {amenities?.map((item) => {
+              console.log("amenities : ", item);
+              return item?.amenities?.map((amenity) => {
+                console.log("amenity : ", amenity);
+                return (
+                  <Text
+                    key={amenity.text}
+                    fontWeight="bold"
+                    color="blue.400"
+                    fontSize="l"
+                    p="2"
+                    bg="gray.200"
+                    m="1"
+                    borderRadius="5"
+                  >
+                    {amenity.text}
+                  </Text>
+                );
+              });
+            })}
+          </Flex>
+        </Box>
       </Box>
     </Box>
   );
