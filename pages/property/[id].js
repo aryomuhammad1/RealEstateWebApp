@@ -1,8 +1,3 @@
-// 1. getStaticPaths, mengambil array paths yang ada
-// 2. getStaticProps, mengambil data dari tiap paths
-// 3. next js membuatkan pages untuk masing2 path
-// langkah diatas berjalan pada build time
-
 import { Box, Flex, Spacer, Text, Avatar } from "@chakra-ui/react";
 import { FaBed, FaBath } from "react-icons/fa";
 import { BsGridFill } from "react-icons/bs";
