@@ -33,7 +33,6 @@ const PropertyDetails = ({
   },
   imgPlaceholders,
 }) => {
-  console.log("[amenities] :", amenities);
   return (
     <Box maxW="1000px" margin="auto" p="4">
       {photos && imgPlaceholders && (
@@ -64,7 +63,7 @@ const PropertyDetails = ({
           {rooms} <FaBed /> | {baths} <FaBath /> | {millify(area)} sqft{" "}
           <BsGridFill />
         </Flex>
-        <Box marginTop="2">
+        <Box marginTop="4">
           <Text fontSize="lg" marginBottom="2" fontWeight="bold">
             {title}
           </Text>
@@ -76,6 +75,7 @@ const PropertyDetails = ({
           flexWrap="wrap"
           textTransform="uppercase"
           justifyContent="space-between"
+          marginTop="5"
         >
           <Flex
             justifyContent="space-between"
@@ -110,13 +110,11 @@ const PropertyDetails = ({
             </Flex>
           )}
         </Flex>
-        <Box>
+        <Box marginTop="5">
           {amenities.length && <Text>Facilities :</Text>}
           <Flex flexWrap="wrap">
             {amenities?.map((item) => {
-              console.log("amenities : ", item);
               return item?.amenities?.map((amenity) => {
-                console.log("amenity : ", amenity);
                 return (
                   <Text
                     key={amenity.text}
