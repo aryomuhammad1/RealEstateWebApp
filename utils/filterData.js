@@ -1,4 +1,4 @@
-export const filterData = [
+export default filterData = [
   {
     items: [
       { name: "Buy", value: "for-sale" },
