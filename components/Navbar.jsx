@@ -12,7 +12,6 @@ import {
 } from "@chakra-ui/react";
 import { FcMenu, FcHome, FcAbout, FcKey } from "react-icons/fc";
 import { BsSearch } from "react-icons/bs";
-import { FiKey } from "react-icons/fi";
 
 const Navbar = () => {
   return (
