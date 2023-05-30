@@ -1,4 +1,4 @@
-export default filterData = [
+const filterData = [
   {
     items: [
       { name: "Buy", value: "for-sale" },
@@ -133,3 +133,5 @@ export default filterData = [
     queryName: "categoryExternalID",
   },
 ];
+
+export default filterData;
